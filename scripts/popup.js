@@ -24,25 +24,25 @@ getCurrentTab().then((tab) => {
     .then(json => {
         const list = document.querySelector("#list");
         const ul = document.createElement("ul");
-        json.history.reverse();
-        for(let i = 0; i < json.history.length; i++) {
-            const element = json.history[i];
+        json.reverse();
+        for(let i = 0; i < json.length; i++) {
+            const element = json[i];
             const li = document.createElement("li");
             
-            const isNextElement = json.history[i+1] ? true : false;
+            const isNextElement = json[i+1] ? true : false;
             let difference = "";
             if(isNextElement) {
-                difference = Math.round((element.price - json.history[i+1].price) * 100) / 100;
+                difference = Math.round((element.price - json[i+1].price) * 100) / 100;
                 if(difference > 0) {
-                    difference = `(+${difference} ${element.currency})`;
+                    difference = `(+${difference} EUR)`;
                 } else if(difference < 0) {
-                    difference = `(${difference} ${element.currency})`;
+                    difference = `(${difference} EUR)`;
                 } if(difference === 0) {
                     difference = "";
                 }
             }
 
-            li.textContent = element.timestamp + " " + element.price + " " + element.currency + difference;
+            li.textContent = element.timestamp + " " + element.price + " " + "EUR" + difference;
             ul.appendChild(li);
         }
         list.appendChild(ul);

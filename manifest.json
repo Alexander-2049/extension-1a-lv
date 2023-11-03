@@ -1,14 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "Reading time",
+  "name": "1a.lv tracker",
   "version": "1.0",
-  "description": "Add the reading time to Chrome Extension documentation articles",
-
+  "description": "1a.lv product price history tracker",
   "icons": {
-    "16": "images/icon-16.png",
-    "32": "images/icon-32.png",
-    "48": "images/icon-48.png",
-    "128": "images/icon-128.png"
+      "32": "./assets/logo.png"
   },
   "content_scripts": [
     {
@@ -22,7 +18,8 @@
     }
   ],
   "action": {
-    "default_popup": "index.html"
+    "default_popup": "index.html",
+    "default_icon": "./assets/logo.png"
   },
   "permissions": ["tabs"] 
 }

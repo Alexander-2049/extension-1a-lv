@@ -2,7 +2,16 @@
 const WORKER = "https://data-parser-1a-lv.a-alexander-2049.workers.dev";
 // fetch(WORKER + window.location.href)
 
-const data = JSON.parse(document.querySelector('script[type="application/ld+json"]').innerHTML);
+let data;
+const queryScript = document.querySelector('script[type="application/ld+json"]');
+if(queryScript !== null) {
+    data = JSON.parse(queryScript.innerHTML);
+} else {
+    const preces_kods = document.querySelector("p.product-id").innerText;
+    const arr = preces_kods.split(' ');
+    const id = arr[arr.length - 1];
+    data = { url: window.location.href, sku: id }
+}
 const { url, sku: id } = data;
 
 const request_url = `${WORKER}?url=${url}&id=${id}`;
